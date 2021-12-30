@@ -9,7 +9,7 @@ const pathToFile = path.resolve(__dirname, "../public");
 import cors from "cors";
 const corsOptions = {
   credentials: true,
-  origin: "http://localhost:3000",
+  origin: process.env.ORIGIN || "http://localhost:3000",
 };
 
 app.use(express.json());

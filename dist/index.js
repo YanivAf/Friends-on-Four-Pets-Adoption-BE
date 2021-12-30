@@ -20,7 +20,7 @@ const init = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const client = yield mongoose_1.default.connect(process.env.DB_URI);
         console.log("connected to db");
-        server_1.app.listen(port, () => console.log(`server is listening on ${port}`));
+        server_1.app.listen(port, () => console.log(`server is listening on ${port}...`));
     }
     catch (err) {
         console.error("Error initializing");

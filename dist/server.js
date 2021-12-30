@@ -13,7 +13,7 @@ const pathToFile = path_1.default.resolve(__dirname, "../public");
 const cors_1 = __importDefault(require("cors"));
 const corsOptions = {
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: process.env.ORIGIN || "http://localhost:3000",
 };
 exports.app.use(express_1.default.json());
 exports.app.use(express_1.default.urlencoded({ extended: true }));

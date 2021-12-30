@@ -10,7 +10,7 @@ const init = async () => {
   try {
     const client = await mongoose.connect(process.env.DB_URI);
     console.log("connected to db");
-    app.listen(port, () => console.log(`server is listening on ${port}`));
+    app.listen(port, () => console.log(`server is listening on ${port}...`));
   } catch (err) {
     console.error("Error initializing");
     process.exit(1);
