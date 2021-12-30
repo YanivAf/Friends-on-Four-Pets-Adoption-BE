@@ -9,23 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logout = exports.banToggleUser = exports.editUser = exports.showUserWithPets = exports.showUserContactInfo = exports.showUser = exports.showUsers = exports.login = exports.signup = exports.generateCookie = void 0;
+exports.logout = exports.banToggleUser = exports.editUser = exports.showUserWithPets = exports.showUserContactInfo = exports.showUser = exports.showUsers = exports.login = exports.signup = void 0;
 const jwt = require("jsonwebtoken");
 const user_1 = require("../models/user");
 const pet_1 = require("../models/pet");
-const generateCookie = (req, res) => {
-    try {
-        const currentUserToken = jwt.sign({ _id: "61b34a1ec562e498a23961f7" }, process.env.JWT_SECRET, { expiresIn: 7200 });
-        console.log(currentUserToken);
-        res.cookie("currentUser", currentUserToken, { maxAge: 7200000 });
-        res.send({ success: true });
-    }
-    catch (error) {
-        console.error(error);
-        res.status(500).send(error.message);
-    }
-};
-exports.generateCookie = generateCookie;
 const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = new user_1.User(Object.assign(Object.assign({}, req.body), { publishedPets: [], savedPets: [], lovedPets: [], adoptedPets: [], fosteredPets: [], adoptedPending: [], fosteredPending: [], incomingRequests: [] }));

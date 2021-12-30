@@ -43,7 +43,6 @@ class Users {
                     : userId;
                 const user = yield exports.User.findById(_id).select(selection);
                 user;
-                console.log(user);
                 return user;
             }
             catch (err) {

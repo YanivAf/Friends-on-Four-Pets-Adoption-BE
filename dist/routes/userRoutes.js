@@ -10,7 +10,6 @@ const validateBody_1 = require("../middlewares/validateBody");
 const userMiddlewares_1 = require("../middlewares/userMiddlewares");
 const userControllers_1 = require("../controllers/userControllers");
 router
-    .get("/cookie", userControllers_1.generateCookie)
     .get("/token/", userMiddlewares_1.isLoggedInAndAuthenticated, userMiddlewares_1.doesUserExist, userMiddlewares_1.isBanned, userControllers_1.login)
     .post("/filtered", userMiddlewares_1.isLoggedInAndAuthenticated, userMiddlewares_1.doesUserExist, userMiddlewares_1.isSuperAdmin, userMiddlewares_1.onlySuperAdmin, userControllers_1.showUsers)
     .post("/signup", (0, validateBody_1.validateBody)(userSchemaBody_1.userSchema), userMiddlewares_1.doesUserExist, userMiddlewares_1.isPasswordPassed, userMiddlewares_1.confirmPassword, userMiddlewares_1.encryptPassword, userControllers_1.signup)
