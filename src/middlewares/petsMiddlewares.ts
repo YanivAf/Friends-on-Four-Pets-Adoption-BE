@@ -106,7 +106,8 @@ export const petCanBeRequested = async (req, res, next) => {
         : req.userDoc._id.toString();
       if (userIdToCheck === foster) {
         if (type !== "Foster") return next();
-      }
+      } else if (response)
+        await Users.removeRequestsByPet(req.params.id, req.userDoc);
     } else if (response)
       await Users.removeRequestsByPet(req.params.id, req.userDoc);
     res.status(409).send({ message: `Pet was already ${adoptionStatus}` });

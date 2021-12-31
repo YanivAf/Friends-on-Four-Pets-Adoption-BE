@@ -125,6 +125,8 @@ const petCanBeRequested = (req, res, next) => __awaiter(void 0, void 0, void 0, 
                 if (type !== "Foster")
                     return next();
             }
+            else if (response)
+                yield user_1.Users.removeRequestsByPet(req.params.id, req.userDoc);
         }
         else if (response)
             yield user_1.Users.removeRequestsByPet(req.params.id, req.userDoc);

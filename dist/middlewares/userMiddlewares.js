@@ -16,7 +16,6 @@ const bcrypt = require("bcrypt");
 const isLoggedInAndAuthenticated = (req, res, next) => {
     try {
         const authHeaders = req.headers['currentuser'];
-        console.log(req.headers.currentuser);
         if (!authHeaders) {
             res.status(401).send({ message: "The session has expired. Please log in again" });
             return;

@@ -7,7 +7,7 @@ exports.app = void 0;
 const express_1 = __importDefault(require("express"));
 exports.app = (0, express_1.default)();
 require("dotenv").config();
-const express_session_1 = __importDefault(require("express-session"));
+// import session from 'express-session';
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const path_1 = __importDefault(require("path"));
 const pathToFile = path_1.default.resolve(__dirname, "../public");
@@ -17,17 +17,6 @@ const corsOptions = {
     origin: process.env.ORIGIN || "http://localhost:3000",
     exposedHeaders: ["set-cookie"]
 };
-exports.app.set("trust proxy", 1);
-exports.app.use((0, express_session_1.default)({
-    secret: process.env.SESSION_SECRET || '123456',
-    resave: true,
-    saveUninitialized: false,
-    cookie: {
-        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
-        secure: process.env.NODE_ENV === "production",
-        domain: process.env.ORIGIN || "http://localhost:3000"
-    }
-}));
 exports.app.use((0, cookie_parser_1.default)());
 exports.app.use(express_1.default.json());
 exports.app.use(express_1.default.urlencoded({ extended: true }));
