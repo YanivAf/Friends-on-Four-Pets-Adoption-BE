@@ -21,5 +21,9 @@ app.use(cors(corsOptions));
 import userRoutes from "./routes/userRoutes";
 import petRoutes from "./routes/petRoutes";
 
+app.get('/', (req, res) => {
+  res.send({ foo: "bar", hello: "world", chuck: "norris" });
+});
+
 app.use("/user", userRoutes);
 app.use("/pet", petRoutes);
