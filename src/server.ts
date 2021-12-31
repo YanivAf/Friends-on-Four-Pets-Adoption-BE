@@ -11,6 +11,7 @@ import cors from "cors";
 const corsOptions = {
   credentials: true,
   origin: process.env.ORIGIN || "http://localhost:3000",
+  exposedHeaders: ["set-cookie"]
 };
 
 app.set("trust proxy", 1);
