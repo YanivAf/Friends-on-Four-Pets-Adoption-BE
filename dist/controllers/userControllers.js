@@ -20,8 +20,7 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const currentUserToken = jwt.sign({ _id }, process.env.JWT_SECRET, {
             expiresIn: 7200,
         });
-        res.cookie("currentUser", currentUserToken, { maxAge: 7200000 });
-        res.send(_id);
+        res.send({ _id, token: currentUserToken });
     }
     catch (error) {
         console.error(error);
@@ -33,8 +32,7 @@ const login = (req, res) => {
     try {
         const { userDoc } = req;
         const currentUserToken = jwt.sign({ _id: userDoc._id }, process.env.JWT_SECRET, { expiresIn: 7200 });
-        res.cookie("currentUser", currentUserToken, { maxAge: 7200000 });
-        res.send(userDoc);
+        res.send({ userDoc, token: currentUserToken });
     }
     catch (error) {
         console.error(error);
@@ -117,11 +115,9 @@ exports.banToggleUser = banToggleUser;
 const logout = (req, res) => {
     try {
         const { fullName } = req.userDoc;
-        res.clearCookie("currentUser");
         res.send({
             title: `Goodbye, ${fullName}!`,
-            text: `See you next time!`,
-            isLoggedIn: true,
+            text: `See you next time!`
         });
     }
     catch (error) {

@@ -1,17 +1,22 @@
 export {};
 
-import { Pets } from "../models/pet";
 import { Users } from "../models/user";
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 export const isLoggedInAndAuthenticated = (req, res, next) => {
   try {
-    const { currentUser } = req.cookies;
+
+    const authHeaders = req.headers['currentuser'];
+    console.log(req.headers.currentuser);
+    if (!authHeaders) {
+      res.status(401).send({ message: "The session has expired. Please log in again" });
+      return;
+    }
+    const currentUser = authHeaders.replace('Bearer ', '');
     if (currentUser) {
       jwt.verify(currentUser, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
-          res.clearCookie("currentUser");
           res.status(401).send({
             message:
               "You are not authorized to see this page, mister hacker...",
@@ -43,9 +48,8 @@ export const doesUserExist = async (req, res, next) => {
         req.userDoc = userDoc;
         next();
       } else {
-        res.clearCookie("currentUser");
         res
-          .status(404)
+          .status(401)
           .send({ message: `User wasn't found, mister hacker...` });
       }
       return;

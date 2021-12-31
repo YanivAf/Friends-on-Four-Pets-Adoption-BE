@@ -24,8 +24,7 @@ export const signup = async (req, res) => {
       expiresIn: 7200,
     });
 
-    res.cookie("currentUser", currentUserToken, { maxAge: 7200000 });
-    res.send(_id);
+    res.send({ _id, token: currentUserToken });
   } catch (error) {
     console.error(error);
     res.status(500).send(error.message);
@@ -42,8 +41,7 @@ export const login = (req, res) => {
       { expiresIn: 7200 }
     );
 
-    res.cookie("currentUser", currentUserToken, { maxAge: 7200000 });
-    res.send(userDoc);
+    res.send({ userDoc, token: currentUserToken });
   } catch (error) {
     console.error(error);
     res.status(500).send(error.message);
@@ -125,11 +123,9 @@ export const logout = (req, res) => {
   try {
     const { fullName } = req.userDoc;
 
-    res.clearCookie("currentUser");
     res.send({
       title: `Goodbye, ${fullName}!`,
-      text: `See you next time!`,
-      isLoggedIn: true,
+      text: `See you next time!`
     });
   } catch (error) {
     console.error(error);
