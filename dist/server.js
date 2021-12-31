@@ -23,7 +23,7 @@ exports.app.use((0, cors_1.default)(corsOptions));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const petRoutes_1 = __importDefault(require("./routes/petRoutes"));
 exports.app.get('/', (req, res) => {
-    res.send({ foo: "bar", hello: "world", chuck: "norris" });
+    res.send({ foo: "bar", hello: "world", chuck: "norris", origin: corsOptions.origin });
 });
 exports.app.use("/user", userRoutes_1.default);
 exports.app.use("/pet", petRoutes_1.default);
