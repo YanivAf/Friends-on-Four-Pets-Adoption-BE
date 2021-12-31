@@ -14,19 +14,6 @@ const corsOptions = {
   exposedHeaders: ["set-cookie"]
 };
 
-// app.set("trust proxy", 1);
-// app.use(
-//   session({
-//     secret: process.env.SESSION_SECRET || '123456',
-//     resave: true,
-//     saveUninitialized: false,
-//     cookie: {
-//       sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
-//       secure: process.env.NODE_ENV === "production",
-//       domain: process.env.ORIGIN || "http://localhost:3000"
-//     }
-//   })
-// );
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
