@@ -3,7 +3,7 @@ import path from "path";
 export const storage = multer.diskStorage({
   destination: "./public/images/",
   filename: (req, file, cb) => {
-    cb(null, `${req.petDoc._id}${path.extname(file.originalname)}`);
+    cb(null, `default${path.extname(file.originalname)}`);
   },
 });
 
