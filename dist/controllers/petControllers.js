@@ -89,7 +89,7 @@ exports.removeFromPetsCollection = removeFromPetsCollection;
 const addPet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { height, weight, hypoallergenic } = req;
-        const pet = new pet_1.Pet(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, req.body), (req.body.height !== undefined ? height : { height: 0 })), (req.body.weight !== undefined ? weight : { weight: 0 })), (req.body.hypoallergenic !== undefined && hypoallergenic)), { adoptionStatus: "Available", loves: 0, petPicture: "public\\images\\default.png", publisher: req.userDoc._id, adopter: null, foster: null }));
+        const pet = new pet_1.Pet(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, req.body), (req.body.height !== undefined ? height : { height: 0 })), (req.body.weight !== undefined ? weight : { weight: 0 })), (req.body.hypoallergenic !== undefined && hypoallergenic)), { adoptionStatus: "Available", loves: 0, petPicture: "https://cutewallpaper.org/25/animal-footprints-wallpaper/100-free-paw-print-amp-paw-images.png", publisher: req.userDoc._id, adopter: null, foster: null }));
         const newPet = yield pet_1.Pets.savePet(pet);
         const { userDoc } = req;
         userDoc.publishedPets.push(pet._id.toString());

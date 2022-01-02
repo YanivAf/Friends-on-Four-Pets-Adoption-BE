@@ -93,7 +93,7 @@ export const addPet = async (req, res) => {
       ...(req.body.hypoallergenic !== undefined && hypoallergenic),
       adoptionStatus: "Available",
       loves: 0,
-      petPicture: "public\\images\\default.png",
+      petPicture: "https://cutewallpaper.org/25/animal-footprints-wallpaper/100-free-paw-print-amp-paw-images.png",
       publisher: req.userDoc._id,
       adopter: null,
       foster: null,
