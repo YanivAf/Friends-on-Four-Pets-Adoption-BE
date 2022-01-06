@@ -105,7 +105,7 @@ exports.addPet = addPet;
 const editPet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { height, weight, hypoallergenic } = req;
-        const petPicture = req.file ? req.file.path : req.petDoc.petPicture;
+        const petPicture = req.cloudImgUrl ? req.cloudImgUrl : req.petDoc.petPicture;
         const updatedData = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, req.body), (req.body.height !== undefined && height)), (req.body.weight !== undefined && weight)), (req.body.hypoallergenic !== undefined && hypoallergenic)), { petPicture });
         const editedPet = yield pet_1.Pets.editPet(req.petDoc._id, updatedData);
         res.send(editedPet);

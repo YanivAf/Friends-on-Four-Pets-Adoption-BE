@@ -115,7 +115,7 @@ export const addPet = async (req, res) => {
 export const editPet = async (req, res) => {
   try {
     const { height, weight, hypoallergenic } = req;
-    const petPicture = req.file ? req.file.path : req.petDoc.petPicture;
+    const petPicture = req.cloudImgUrl ? req.cloudImgUrl : req.petDoc.petPicture;
     const updatedData = {
       ...req.body,
       ...(req.body.height !== undefined && height),

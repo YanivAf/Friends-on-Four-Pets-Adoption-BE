@@ -2,6 +2,7 @@ export {};
 
 import { Pets } from "../models/pet";
 import { Users } from "../models/user";
+import { uploadToCloudinary } from "./cloudinaryUpload";
 
 export const isDuplicate = async (req, res, next) => {
   try {
@@ -220,6 +221,22 @@ export const isPetAlreadyInUserCollection = async (req, res, next) => {
         res
           .status(409)
           .send({ message: `This pet is not in your ${saveOrLove}d pets` });
+    }
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send(error.message);
+  }
+};
+
+export const getCloudImgUrl = async (req, res, next) => {
+  try {
+    const ImgUrlRequset: any = await uploadToCloudinary(req.file.path, req.petDoc._id);
+    const cloudImgUrl = ImgUrlRequset.secure_url;
+    if (cloudImgUrl) {
+      req.cloudImgUrl = cloudImgUrl;
+      next();
+    } else {
+      res.status(500).send({ message: `Could not process request to upload the image` });
     }
   } catch (error) {
     console.error(error.message);

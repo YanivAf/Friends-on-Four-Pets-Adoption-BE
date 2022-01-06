@@ -25,7 +25,7 @@ router.all("/:id*", petsMiddlewares_1.doesPetExist);
 router
     .route("/:id")
     .get(petControllers_1.showPet)
-    .put(userMiddlewares_1.isSuperAdmin, userMiddlewares_1.onlyPublisher, petsMiddlewares_1.isPetAvailable, uploadImage_1.uploadImage.single("petPicture"), (0, validateBody_1.validateBody)(petSchemaBody_1.petSchema), petsMiddlewares_1.fixNonStringDataTypes, petControllers_1.editPet)
+    .put(userMiddlewares_1.isSuperAdmin, userMiddlewares_1.onlyPublisher, petsMiddlewares_1.isPetAvailable, uploadImage_1.uploadImage.single("petPicture"), petsMiddlewares_1.getCloudImgUrl, (0, validateBody_1.validateBody)(petSchemaBody_1.petSchema), petsMiddlewares_1.fixNonStringDataTypes, petControllers_1.editPet)
     .delete(userMiddlewares_1.isSuperAdmin, userMiddlewares_1.onlyPublisher, petsMiddlewares_1.isPetAvailable, petControllers_1.deletePet);
 router.all("/:id/save", petsMiddlewares_1.isPetAlreadyInUserCollection);
 router

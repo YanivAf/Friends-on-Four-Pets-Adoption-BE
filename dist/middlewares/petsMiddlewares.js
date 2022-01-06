@@ -9,9 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isPetAlreadyInUserCollection = exports.isPetNotAdopted = exports.isPetFostered = exports.isPetAvailable = exports.isPetAlreadyPendingByUser = exports.petCanBeRequested = exports.doesRequestExist = exports.publishedByAnother = exports.doesPetExist = exports.fixNonStringDataTypes = exports.isDuplicate = void 0;
+exports.getCloudImgUrl = exports.isPetAlreadyInUserCollection = exports.isPetNotAdopted = exports.isPetFostered = exports.isPetAvailable = exports.isPetAlreadyPendingByUser = exports.petCanBeRequested = exports.doesRequestExist = exports.publishedByAnother = exports.doesPetExist = exports.fixNonStringDataTypes = exports.isDuplicate = void 0;
 const pet_1 = require("../models/pet");
 const user_1 = require("../models/user");
+const cloudinaryUpload_1 = require("./cloudinaryUpload");
 const isDuplicate = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { type, petName } = req.body;
@@ -252,4 +253,22 @@ const isPetAlreadyInUserCollection = (req, res, next) => __awaiter(void 0, void 
     }
 });
 exports.isPetAlreadyInUserCollection = isPetAlreadyInUserCollection;
+const getCloudImgUrl = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const ImgUrlRequset = yield (0, cloudinaryUpload_1.uploadToCloudinary)(req.file.path, req.petDoc._id);
+        const cloudImgUrl = ImgUrlRequset.secure_url;
+        if (cloudImgUrl) {
+            req.cloudImgUrl = cloudImgUrl;
+            next();
+        }
+        else {
+            res.status(500).send({ message: `Could not process request to upload the image` });
+        }
+    }
+    catch (error) {
+        console.error(error.message);
+        res.status(500).send(error.message);
+    }
+});
+exports.getCloudImgUrl = getCloudImgUrl;
 //# sourceMappingURL=petsMiddlewares.js.map

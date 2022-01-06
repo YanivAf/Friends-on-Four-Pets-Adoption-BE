@@ -7,7 +7,6 @@ exports.app = void 0;
 const express_1 = __importDefault(require("express"));
 exports.app = (0, express_1.default)();
 require("dotenv").config();
-// import session from 'express-session';
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const path_1 = __importDefault(require("path"));
 const pathToFile = path_1.default.resolve(__dirname, "../public");

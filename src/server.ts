@@ -1,7 +1,6 @@
 import express from "express";
 export const app = express();
 require("dotenv").config();
-// import session from 'express-session';
 import cookieParser from "cookie-parser";
 
 import path from "path";

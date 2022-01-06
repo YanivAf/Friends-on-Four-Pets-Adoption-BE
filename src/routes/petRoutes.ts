@@ -30,6 +30,7 @@ import {
   isPetFostered,
   isPetNotAdopted,
   isPetAlreadyInUserCollection,
+  getCloudImgUrl
 } from "../middlewares/petsMiddlewares";
 import {
   showPets,
@@ -82,6 +83,7 @@ router
     onlyPublisher,
     isPetAvailable,
     uploadImage.single("petPicture"),
+    getCloudImgUrl,
     validateBody(petSchema),
     fixNonStringDataTypes,
     editPet
