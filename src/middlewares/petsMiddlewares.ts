@@ -230,6 +230,7 @@ export const isPetAlreadyInUserCollection = async (req, res, next) => {
 
 export const getCloudImgUrl = async (req, res, next) => {
   try {
+    if (!req.file) return next();
     const ImgUrlRequset: any = await uploadToCloudinary(req.file.path, req.petDoc._id);
     const cloudImgUrl = ImgUrlRequset.secure_url;
     if (cloudImgUrl) {

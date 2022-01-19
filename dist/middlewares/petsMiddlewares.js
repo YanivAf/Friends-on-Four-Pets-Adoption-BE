@@ -255,7 +255,10 @@ const isPetAlreadyInUserCollection = (req, res, next) => __awaiter(void 0, void 
 exports.isPetAlreadyInUserCollection = isPetAlreadyInUserCollection;
 const getCloudImgUrl = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        if (!req.file)
+            return next();
         const ImgUrlRequset = yield (0, cloudinaryUpload_1.uploadToCloudinary)(req.file.path, req.petDoc._id);
+        console.log('2');
         const cloudImgUrl = ImgUrlRequset.secure_url;
         if (cloudImgUrl) {
             req.cloudImgUrl = cloudImgUrl;
